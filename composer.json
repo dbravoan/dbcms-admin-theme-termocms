@@ -1,0 +1,16 @@
+{
+    "name": "dbravoan/dbcms-admin-theme-termocms",
+    "type": "dbcms-admin-theme",
+    "description": "Backoffice claro corporativo/clínico en tonos slate con acentos azul médico #0090A8 y tipografía Plus Jakarta Sans.",
+    "license": "MIT",
+    "require": {
+        "dbravoan/dbcms-core": "^4.0"
+    },
+    "extra": {
+        "dbcms": {
+            "identifier": "termocms",
+            "repository": "https://github.com/dbravoan/dbcms-admin-theme-termocms",
+            "name": "termoCMS (Corporate White)"
+        }
+    }
+}
