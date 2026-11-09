@@ -14,7 +14,7 @@
     <title>@yield('title', __('admin.dashboard.control_panel')) | {{ config('cms.name') }}</title>
     <link rel="icon" type="image/png" href="{{ theme_asset('termosalud-favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ theme_asset('termosalud-favicon.png') }}">
-    <link rel="stylesheet" href="{{ theme_asset('termocms.css') }}?v={{ @filemtime(resource_path('views/themes/admin/termocms/assets/termocms.css')) ?: config('cms.version') }}">
+    <link rel="stylesheet" href="{{ theme_asset('termocms.css') }}?v={{ config('cms.version') }}">
     <style nonce="{{ $cspNonce ?? '' }}">
         [x-cloak] { display: none !important; }
         body, html {
@@ -256,15 +256,15 @@
 
         <!-- Sidebar Footer -->
         <div class="p-4 border-t border-slate-200 bg-slate-50 shrink-0 font-sans text-xs">
-            @unless(app()->isProduction())
+            @if(!app()->isProduction() && config('cms.adminer_url'))
             <div class="mb-3">
-                <a href="http://localhost:8088" id="nav-adminer" target="_blank" class="w-full flex items-center justify-center gap-2 py-1.5 px-2 bg-white hover:bg-slate-100 border border-slate-200 hover:border-slate-300 rounded-lg text-[11px] text-slate-600 hover:text-[#0090A8] transition-colors shadow-sm">
+                <a href="{{ config('cms.adminer_url') }}" id="nav-adminer" target="_blank" class="w-full flex items-center justify-center gap-2 py-1.5 px-2 bg-white hover:bg-slate-100 border border-slate-200 hover:border-slate-300 rounded-lg text-[11px] text-slate-600 hover:text-[#0090A8] transition-colors shadow-sm">
                     <i class="fa-solid fa-database text-xs text-slate-400"></i>
                     <span>{{ __('admin.layout.adminer') }}</span>
                     <span class="text-slate-400">&nearr;</span>
                 </a>
             </div>
-            @endunless
+            @endif
             <div class="flex items-center justify-between">
                 <div class="truncate max-w-[140px]">
                     <div class="text-slate-900 font-bold truncate">{{ $user?->name ?? 'Usuario' }}</div>
@@ -501,6 +501,14 @@
                 </div>
             @endif
 
+
+            @if(session('error'))
+                <div role="alert" data-dismissable class="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 font-sans text-xs flex items-center justify-between shadow-sm">
+                    <span>{{ session('error') }}</span>
+                    <button type="button" data-dismiss aria-label="{{ __('admin.common.close') }}" class="text-slate-400 hover:text-slate-700">&times;</button>
+                </div>
+            @endif
+
             @if(isset($errors) && $errors->any())
                 <div class="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 font-sans text-xs shadow-sm">
                     <ul class="list-disc pl-4 space-y-1">
@@ -509,6 +517,13 @@
                         @endforeach
                     </ul>
                 </div>
+            @endif
+
+            @if(! empty($inactive))
+                <p class="mb-4 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 px-4 py-3 flex items-start gap-2" role="status">
+                    <span class="font-bold shrink-0">{{ __('admin.modules.inactive') }}</span>
+                    <span>{{ __('admin.modules.settings_inactive_notice') }}</span>
+                </p>
             @endif
 
             @yield('content')

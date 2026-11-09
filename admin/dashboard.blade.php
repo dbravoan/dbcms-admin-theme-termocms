@@ -32,15 +32,15 @@
                         title="{{ __('admin.dashboard.system_tour_tooltip') }}">
                     <span>{{ __('admin.dashboard.system_tour') }}</span>
                 </button>
-                @unless(app()->isProduction())
-                <a href="http://localhost:8088"
+                @if(!app()->isProduction() && config('cms.adminer_url'))
+                <a href="{{ config('cms.adminer_url') }}"
                    target="_blank"
                    class="px-4 py-2.5 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-[#0090A8] rounded-lg text-xs font-semibold transition-all flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-database text-slate-400"></i>
                     <span>{{ __('admin.layout.adminer') }}</span>
                     <span class="text-slate-400">&nearr;</span>
                 </a>
-                @endunless
+                @endif
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@
     "description": "Backoffice claro corporativo/clínico en tonos slate con acentos azul médico #0090A8 y tipografía Plus Jakarta Sans.",
     "license": "MIT",
     "require": {
-        "dbravoan/dbcms-core": "^4.0"
+        "dbravoan/dbcms-core": "^1.0"
     },
     "extra": {
         "dbcms": {
