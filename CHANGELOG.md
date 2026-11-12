@@ -7,6 +7,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [1.0.1] - 2026-11-12
+
+### Corregido
+
+- La URL del stylesheet de marca no depende de rutas de assets del monorepo.
+
 ## [1.0.0] - 2026-11-05
 
 ### Añadido
