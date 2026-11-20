@@ -1,0 +1,8 @@
+/.build/
+/vendor/
+/node_modules/
+/.env
+/.phpunit.cache/
+/.env.*
+
+/tests/Browser/node_modules/

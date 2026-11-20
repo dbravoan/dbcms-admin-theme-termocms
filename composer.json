@@ -1,0 +1,62 @@
+{
+    "name": "dbravoan/dbcms-admin-theme-termocms",
+    "type": "dbcms-admin-theme",
+    "description": "Backoffice claro corporativo/clínico en tonos slate con acentos azul médico #0090A8 y tipografía Plus Jakarta Sans.",
+    "license": "MIT",
+    "require": {
+        "dbravoan/dbcms-core": "~0.0.1"
+    },
+    "extra": {
+        "dbcms": {
+            "identifier": "termocms",
+            "repository": "https://github.com/dbravoan/dbcms-admin-theme-termocms",
+            "name": "termoCMS (Corporate White)"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "scripts": {
+        "fixture:lock": "@php tooling/package.php fixture:lock",
+        "prepare": "@php tooling/package.php prepare",
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php tooling/tests.php",
+            "@php tooling/package.php test"
+        ],
+        "check": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php tooling/package.php check"
+        ],
+        "test:dist": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php tooling/package.php test:dist"
+        ],
+        "test:tooling": "@php tooling/tests.php",
+        "profiles": "@php tooling/package.php profiles"
+    },
+    "archive": {
+        "exclude": [
+            "/.build",
+            "/.github",
+            "/.gitignore",
+            "/.gitattributes",
+            "/tests",
+            "/tooling",
+            "/docker",
+            "/docs",
+            "/AGENTS.md",
+            "/compose.yaml",
+            "/pint.json",
+            "/phpunit.xml",
+            "/.node-version",
+            "/.dockerignore",
+            "/.env",
+            "/.env.*",
+            "/node_modules",
+            "/vendor"
+        ]
+    },
+    "suggest": {
+        "dbravoan/dbcms-module-blog": "Dashboard opcional de Blog 0.1."
+    }
+}
